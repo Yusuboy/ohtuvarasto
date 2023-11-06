@@ -118,3 +118,13 @@ class TestVarasto(unittest.TestCase):
         saatu_maara = self.varasto.ota_varastosta(0)
         self.assertAlmostEqual(saatu_maara, 0)
         self.assertAlmostEqual(self.varasto.saldo, 5)
+
+    def test_initial_balance_less_than_or_equal_to_volume(self):
+        varasto = Varasto(10, 8)
+        self.assertAlmostEqual(varasto.tilavuus, 10)
+        self.assertAlmostEqual(varasto.saldo, 8)
+
+    def test_initial_balance_exceeds_volume(self):
+        varasto = Varasto(10, 12)
+        self.assertAlmostEqual(varasto.tilavuus, 10)
+        self.assertAlmostEqual(varasto.saldo, 10)
